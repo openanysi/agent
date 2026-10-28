@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "requestId": "827f7919-995f-4500-b149-83d18ba6fda6",
+  "contentType": "application/json; charset=utf-8",
+  "body": {
+    "bitcoin": {
+      "usd": 80423,
+      "usd_24h_change": -0.05520489318096954,
+      "last_updated_at": 1793204560
+    },
+    "ethereum": {
+      "usd": 2329.47,
+      "usd_24h_change": -0.6179774692730129,
+      "last_updated_at": 1793204571
+    },
+    "solana": {
+      "usd": 100.83,
+      "usd_24h_change": 0.03537286320577041,
+      "last_updated_at": 1793204571
+    }
+  }
+}

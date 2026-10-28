@@ -1,0 +1,56 @@
+{
+  "status": 200,
+  "requestId": "3a0bf09b-ff11-44fc-9d1e-633126f259d9",
+  "contentType": "application/json; charset=utf-8",
+  "body": {
+    "shopping": [
+      {
+        "title": "Bose QuietComfort Ultra Noise Wireless Cancelling Headphones",
+        "source": "Bose",
+        "link": "https://www.google.com/search?ibp=oshop&q=Bose+QuietComfort+Ultra+Headphones&prds=localAnnotatedOfferId:1,catalogid:1653831153294424008,gpcid:5914059237801924898,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$249.00",
+        "productId": "1653831153294424008",
+        "position": 1
+      },
+      {
+        "title": "Bose QuietComfort Ultra Headphones",
+        "source": "Best Buy",
+        "link": "https://www.google.com/search?ibp=oshop&q=Bose+QuietComfort+Ultra+Headphones&prds=localAnnotatedOfferId:1,catalogid:18005777686068683712,gpcid:3222417658520627649,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$349.99",
+        "productId": "18005777686068683712",
+        "position": 2
+      },
+      {
+        "title": "Bose QuietComfort Ultra Headphones (2nd Gen) - Refurbished - White",
+        "source": "Bose",
+        "price": "$279.00",
+        "productId": "16329559789945795885",
+        "position": 3
+      },
+      {
+        "title": "Bose Quiet Comfort Ultra Headphones",
+        "source": "Unclaimed Baggage",
+        "link": "https://www.google.com/search?ibp=oshop&q=Bose+QuietComfort+Ultra+Headphones&prds=localAnnotatedOfferId:1,catalogid:18423633535730307464,gpcid:4011245780515733767,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$199.99",
+        "productId": "18423633535730307464",
+        "position": 4
+      },
+      {
+        "title": "Bose QuietComfort Ultra 2nd Gen Wireless Active Noise Cancelling Over-Ear Headphones",
+        "source": "Best Buy",
+        "link": "https://www.google.com/search?ibp=oshop&q=Bose+QuietComfort+Ultra+Headphones&prds=localAnnotatedOfferId:1,catalogid:593160214062353292,gpcid:10449542115010285211,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$459.00",
+        "productId": "593160214062353292",
+        "position": 5
+      },
+      {
+        "title": "Bose QuietComfort Ultra Earbuds",
+        "source": "Bose",
+        "link": "https://www.google.com/search?ibp=oshop&q=Bose+QuietComfort+Ultra+Headphones&prds=localAnnotatedOfferId:1,catalogid:13754500631989088143,gpcid:15508826476046195862,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$149.00",
+        "productId": "13754500631989088143",
+        "position": 6
+      }
+    ]
+  }
+}

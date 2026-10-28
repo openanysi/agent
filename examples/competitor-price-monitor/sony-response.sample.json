@@ -1,0 +1,54 @@
+{
+  "status": 200,
+  "requestId": "949b7154-ad37-4305-8a41-32c726a614d5",
+  "contentType": "application/json; charset=utf-8",
+  "body": {
+    "shopping": [
+      {
+        "title": "Sony WH-1000XM5 Noise Canceling Wireless Headphones",
+        "source": "Best Buy",
+        "link": "https://www.google.com/search?ibp=oshop&q=Sony+WH-1000XM5+headphones&prds=localAnnotatedOfferId:1,catalogid:17653315832884157286,gpcid:11726664398501807381,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$301.99",
+        "productId": "17653315832884157286",
+        "position": 1
+      },
+      {
+        "title": "Sony Wh-1000XM5 Wireless Noise-Cancelling Over-the-Ear Headphones",
+        "source": "Target",
+        "link": "https://www.google.com/search?ibp=oshop&q=Sony+WH-1000XM5+headphones&prds=localAnnotatedOfferId:1,catalogid:8734939497706104915,gpcid:13793769760861274890,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$149.99",
+        "productId": "8734939497706104915",
+        "position": 2
+      },
+      {
+        "title": "Sony Wh-1000xm5 The Best Wireless Noise Canceling Headphones, Silver (Sold without manufacturer warranty)",
+        "source": "Walmart - Daily Spirit Deals",
+        "price": "$272.95",
+        "productId": "18177089491065756821",
+        "position": 3
+      },
+      {
+        "title": "Sony WH-1000XM5 Noise-Canceling Wireless Over-Ear Headphones",
+        "source": "Lowe's",
+        "link": "https://www.google.com/search?ibp=oshop&q=Sony+WH-1000XM5+headphones&prds=localAnnotatedOfferId:1,catalogid:15388125741562851526,gpcid:5295665380468363209,pvo:2,pvt:hg&gl=us&udm=28&pvorigin=2",
+        "price": "$281.99",
+        "productId": "15388125741562851526",
+        "position": 4
+      },
+      {
+        "title": "Sony - WH-1000XM5 Wireless Noise Cancelling Over-the-Ear Headphones with Soft Case - Black",
+        "source": "Best Buy",
+        "price": "$349.00",
+        "productId": "15668785806770615730",
+        "position": 5
+      },
+      {
+        "title": "Sony WH-1000XM5 Wireless Noise-Canceling Headphones Black | WH1000XM5/B",
+        "source": "Lowe's",
+        "price": "$299.00",
+        "productId": "4796981683703618970",
+        "position": 6
+      }
+    ]
+  }
+}

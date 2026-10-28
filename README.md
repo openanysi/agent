@@ -28,6 +28,9 @@ API calls use your OpenAny API key and shared balance. Configure credentials loc
 
 ## Examples
 
+- [Research market interest](examples/market-research/README.md): compare Google Trends interest for product categories and see a real result.
+- [Track competitor prices](examples/competitor-price-monitor/README.md): collect shopping price snapshots and ask your agent to compare matching listings over time.
+- [Look up cryptocurrency prices](examples/crypto-data/README.md): get BTC, ETH, and SOL prices, 24-hour changes, and update times.
 - [Search Facebook Ad Library](examples/facebook-ad-library/README.md): copy a prompt into your agent to find active ads matching a keyword and see advertiser names, ad links, and the recorded cost.
 
 ## Demo
