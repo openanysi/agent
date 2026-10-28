@@ -31,3 +31,11 @@ API calls use your OpenAny API key and shared balance. Configure credentials loc
 Demo GIF coming soon.
 
 <!-- Replace this placeholder with the demo GIF once it is available. -->
+
+## Contributing
+
+Corrections and improvements are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## License
+
+The contents of this repository are available under the [MIT License](LICENSE). The separately distributed OpenAny CLI, hosted services, and third-party APIs remain subject to their own licenses and terms.
