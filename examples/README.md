@@ -1,9 +1,17 @@
-# OpenAny examples
+# Use OpenAny with your agent
 
-These examples document real OpenAny calls and include commands you can run with your own API key and budget.
+Choose an example, copy the prompt into your agent, and describe what you want to find. Your agent uses OpenAny to retrieve the data and explain the results.
 
-- [Facebook Ad Library keyword search](facebook-ad-library/README.md): discover a ScrapeCreators API, search for `apple`, and inspect the returned ads and recorded cost.
+If you have not connected OpenAny yet, start with:
 
-Each example identifies its source, recorded inputs, result limitations, and sanitized sample files. Samples describe historical calls; current prices, API definitions, and results may differ. Review the current definition before making a paid call.
+```text
+Read openany.si/AGENT.md and connect OpenAny
+```
 
-See [AGENT.md](../AGENT.md) and the [OpenAny skill](../skills/openany/SKILL.md) for setup, authorization, and recovery instructions. Keep live outputs and credentials out of contributions.
+Follow your agent's setup guidance and configure credentials locally. Never paste API keys into the chat.
+
+## Examples
+
+- [Search Facebook Ad Library](facebook-ad-library/README.md): find active ads matching a keyword, see who is advertising, and open the original ads.
+
+Each example includes a ready-to-use prompt and a result from a real session. Paid searches use your OpenAny balance; prices and results can change.

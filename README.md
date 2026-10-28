@@ -28,7 +28,7 @@ API calls use your OpenAny API key and shared balance. Configure credentials loc
 
 ## Examples
 
-- [Facebook Ad Library keyword search](examples/facebook-ad-library/README.md): a real `apple` search with runnable CLI commands, query parameters, a response excerpt, and a sanitized usage record.
+- [Search Facebook Ad Library](examples/facebook-ad-library/README.md): copy a prompt into your agent to find active ads matching a keyword and see advertiser names, ad links, and the recorded cost.
 
 ## Demo
 
