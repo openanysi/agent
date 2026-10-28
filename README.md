@@ -28,9 +28,15 @@ API calls use your OpenAny API key and shared balance. Configure credentials loc
 
 ## Demo
 
-Demo GIF coming soon.
+### Connect an agent
 
-<!-- Replace this placeholder with the demo GIF once it is available. -->
+![OpenAny agent integration demo](assets/demo-cropped.gif)
+
+### Search Facebook Ad Library
+
+Discover and call an API through OpenAny, then view the results, recorded cost, and request ID.
+
+![Facebook Ad Library search through OpenAny](assets/facebook-ad-library-demo.gif)
 
 ## Contributing
 
