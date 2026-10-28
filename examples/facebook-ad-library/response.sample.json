@@ -1,0 +1,28 @@
+{
+  "status": 200,
+  "requestId": "c0b9e2ae-9ae1-4b62-a083-8167a3c9e798",
+  "contentType": "application/json",
+  "body": {
+    "success": true,
+    "searchResults": [
+      {
+        "ad_archive_id": "1549375876128927",
+        "page_name": "Amazon.com.br",
+        "is_active": true,
+        "url": "https://www.facebook.com/ads/library?id=1549375876128927"
+      },
+      {
+        "ad_archive_id": "1702938977100376",
+        "page_name": "Nike",
+        "is_active": true,
+        "url": "https://www.facebook.com/ads/library?id=1702938977100376"
+      },
+      {
+        "ad_archive_id": "1555263375851429",
+        "page_name": "Whatnot",
+        "is_active": true,
+        "url": "https://www.facebook.com/ads/library?id=1555263375851429"
+      }
+    ]
+  }
+}

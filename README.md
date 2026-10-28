@@ -26,6 +26,10 @@ These agents connect through the OpenAny skill and CLI. See the [client setup re
 
 API calls use your OpenAny API key and shared balance. Configure credentials locally; never paste API keys or wallet private keys into agent chats.
 
+## Examples
+
+- [Facebook Ad Library keyword search](examples/facebook-ad-library/README.md): a real `apple` search with runnable CLI commands, query parameters, a response excerpt, and a sanitized usage record.
+
 ## Demo
 
 ### Connect an agent

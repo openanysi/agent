@@ -1,0 +1,7 @@
+{
+  "query": "apple",
+  "country": "ALL",
+  "status": "ACTIVE",
+  "ad_type": "all",
+  "sort_by": "total_impressions"
+}
