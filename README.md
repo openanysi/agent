@@ -16,11 +16,11 @@ Your agent needs terminal and network access, Node.js 22 or later, and the OpenA
 
 ## Supported agents
 
-- Claude Code
-- Cursor
-- Codex
-- Hermes Agent
-- OpenClaw
+- [Claude Code](guides/claude-code.md)
+- [Cursor](guides/cursor.md)
+- [Codex](guides/codex.md)
+- [Hermes Agent](guides/hermes.md)
+- [OpenClaw](guides/openclaw.md)
 
 These agents connect through the OpenAny skill and CLI. See the [client setup recipes](https://openany.si/docs/agents.json) for each agent's skill installation location and setup steps.
 

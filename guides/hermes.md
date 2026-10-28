@@ -1,0 +1,5 @@
+# Hermes Agent
+
+Read [AGENT.md](../AGENT.md), then copy the [OpenAny skill](../skills/openany/SKILL.md) to `~/.hermes/skills/openany/SKILL.md` and refresh skills or start a new session as required. In the agent's execution environment, use Node.js 22 or later and run `npm install -g openany-cli@latest --registry=https://registry.npmjs.org/`; check `openany --version` and `openany --help`. Allow terminal and network access under the client's policy. Reuse a securely configured `OPENANY_API_KEY` or the CLI's saved key (the environment variable takes precedence); follow [AUTH.md](https://openany.si/AUTH.md) for missing configuration. Run `openany status --scenario call -j` and inspect `configured` and `missing`. Ordinary calls need no wallet or email login. Check balance, discover and inspect the resource, then call within the approved purpose and budget; use the skill's model workflow for model calls. Keep the agent's main-model configuration unchanged. Local checks do not verify API access: if no authorized call ran, report "Configured; live verification pending."
+
+Source: [OpenAny client setup recipes](https://openany.si/docs/agents.json).
