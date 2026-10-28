@@ -4,22 +4,10 @@ Ask your agent to compare interest in two product categories before deciding wha
 
 ## Try it
 
-If needed, connect your agent first:
+Copy this prompt into your agent:
 
 ```text
-Read openany.si/AGENT.md and connect OpenAny
-```
-
-Then copy this prompt:
-
-```text
-Use OpenAny's DataForSEO Google Trends API to compare "wireless earbuds"
-and "noise cancelling headphones" in the United States over the past 12 months.
-Use web search interest. Show the average interest index for each term,
-the peak periods, and any missing or incomplete data.
-Explain what the comparison tells me and what it cannot tell me about demand.
-Include the source link, observation time, and recorded API cost.
-Confirm the price with me before making the request.
+Read https://openany.si/SKILL.md, then use DataForSEO Google Trends through OpenAny to compare web search interest for "wireless earbuds" and "noise cancelling headphones" in the United States over the past 12 months.
 ```
 
 Replace the keywords, country, or time range with the market you want to explore.

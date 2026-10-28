@@ -4,20 +4,10 @@ Ask your agent for a timestamped price snapshot of Bitcoin, Ethereum, and Solana
 
 ## Try it
 
-If needed, connect your agent first:
+Copy this prompt into your agent:
 
 ```text
-Read openany.si/AGENT.md and connect OpenAny
-```
-
-Then copy this prompt:
-
-```text
-Use OpenAny's CoinGecko price API to look up bitcoin, ethereum, and solana.
-Show their USD prices, 24-hour percentage changes, and each price's last
-updated time in a table. Use the coin IDs to avoid ambiguous ticker matches.
-Include the data source and recorded API cost. If the endpoint is no longer
-free, confirm the price with me before making the request.
+Read https://openany.si/SKILL.md, then use CoinGecko through OpenAny to get USD prices for bitcoin, ethereum, and solana, including 24-hour percentage changes and last updated times.
 ```
 
 Replace the coin IDs or quote currency to query the assets you follow. Ask your agent to verify unfamiliar coin IDs before querying.

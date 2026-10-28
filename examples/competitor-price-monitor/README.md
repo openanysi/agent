@@ -4,34 +4,19 @@ Ask your agent to collect a price snapshot for competing products, then compare 
 
 ## Try it
 
-If needed, connect your agent first:
+Copy this prompt into your agent:
 
 ```text
-Read openany.si/AGENT.md and connect OpenAny
+Read https://openany.si/SKILL.md, then use Serper Shopping through OpenAny to search US listings for "Sony WH-1000XM5 headphones" and "Bose QuietComfort Ultra Headphones", one page for each product.
 ```
 
-Then copy this prompt:
+Replace the product names and market with your own competitors. Save the returned listings as a dated snapshot. For a later comparison, provide that snapshot and ask:
 
 ```text
-Use OpenAny's Serper Shopping API to search US listings for
-"Sony WH-1000XM5 headphones" and "Bose QuietComfort Ultra Headphones".
-Retrieve one page for each product. Show the listing title, seller,
-displayed price, product ID, and link when available.
-Flag refurbished items, bundles, different generations, earbuds,
-and unclear condition instead of treating every result as equivalent.
-Save a dated price snapshot so I can compare the same listings later.
-Include the recorded API cost, and confirm the total price before searching.
+Read https://openany.si/SKILL.md, then refresh these product searches through OpenAny and compare prices with my attached snapshot, matching the same products and sellers with the same generation, condition, and currency.
 ```
 
-Replace the product names and market with your own competitors. For a later comparison, provide your saved snapshot and ask:
-
-```text
-Refresh these product searches through OpenAny and compare them with my
-attached price snapshot. Match product IDs and sellers, verify model,
-generation, condition, and currency, and show absolute and percentage
-price changes only for comparable listings. Mark new, missing, or ambiguous
-listings separately. Confirm the price before making new requests.
-```
+This follow-up is a suggested next use; the recorded results below cover only the first snapshot.
 
 ## Actual result
 

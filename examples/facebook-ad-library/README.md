@@ -4,22 +4,13 @@ Ask your agent to find active Facebook ads matching a keyword and summarize the 
 
 ## Try it
 
-If OpenAny is not connected yet, send this to your agent first and follow its setup guidance:
+Copy this prompt into your agent:
 
 ```text
-Read openany.si/AGENT.md and connect OpenAny
+Read https://openany.si/SKILL.md, then use Facebook ad library search through openany, for apple
 ```
 
-Then copy this prompt:
-
-```text
-Use OpenAny to search Facebook Ad Library for the keyword "apple".
-Find active ads across all countries and return one page of results.
-Summarize the advertiser names and include links to the original ads.
-Confirm the price with me before searching, and include the recorded cost in your answer.
-```
-
-Replace `apple` with your own keyword. You can also ask for a specific country or a different ad status. If a requested filter is unavailable, ask your agent to explain the limitation.
+Replace `apple` with your own keyword. You can also ask for a specific country or ad status. The recorded session below used active ads across all countries and one page of results.
 
 ## What you will get
 
