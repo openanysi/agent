@@ -12,17 +12,17 @@ OpenAny CLI discovers and calls model, data, and tool APIs, and manages accounts
 
 Prefer a tool the user has specified or an appropriate dedicated tool that is already available. When operating through OpenAny, stay within the purpose and budget authorized by the user.
 
-The CLI uses fixed service addresses: the service URL is **https://openany.si**, the API gateway is **https://api.openany.si**, and the signing service domain matches the service URL. These addresses are built in, require no additional configuration, and cannot be overridden at runtime.
+The backend and signing service use **https://openany.si**; the default gateway is **https://api.openany.si**. Model execution uses the actual HTTPS URL published in the selected catalog `curlExample`, including legacy or development domains. Do not rewrite that URL or execute the curl text in a shell. There is no command-line origin override.
 
 The CLI uses API keys and shared-balance billing for resource calls. Its x402 workflow tops up that balance; it does not implement direct x402 payment for an individual API request. Separate x402 resources must be evaluated under their own published contracts, outside this CLI workflow. Authentication and top-up availability also depend on the deployed service configuration; local configuration checks do not prove those services are enabled.
 
 ## Preflight Checks
 
-For model, data, or tool API calls, use scenario A below; only an API key is required.
+For actual model, data, or tool execution, use scenario A below; only an API key is required. Public catalog browsing and `models run --dry-run` are exempt from these credential checks and can precede configuration.
 
 1. If required credentials or local settings are missing, follow **Missing Configuration: Required User Guidance** below. Explain the exact terminal steps and explicitly warn against sending sensitive information in any AI/model conversation; ask the user to configure locally and confirm completion, never to supply secret values in chat. If tools or authorization details are missing, explain what is needed and request only the relevant connection or authorization. Missing CLI-managed login sessions or payment policies can be established within existing authorization using the login and Authorized Top-Ups steps below; do not ask the user to edit the credentials file.
 2. If configuration status is unknown, run one local check: `openany status --scenario call -j`. Use `configured` and `missing` to determine whether all required settings are present. Exit code 0 means the check completed; subsequent requests must still verify that the configuration works.
-3. If the API key is missing, pause catalog queries and API calls. If the user already has a key, guide them through `openany setup --scenario call` in their own terminal; otherwise, follow the wallet/email login and key-creation flow below within their authorization. Use only credentials configured or explicitly designated by the user through an authorized secure mechanism. Do not scan repositories, `.env*` files, user directories, or credential stores, and do not send invalid keys as a test. If running unattended and configuration cannot be obtained, record the missing setting names without values and end the run.
+3. If the API key is missing, pause execution requests. Explicit public catalog browsing and `models run --dry-run` may proceed without a key. If the user already has a key, guide them through `openany setup --scenario call` in their own terminal; otherwise, follow the wallet/email login and key-creation flow below within their authorization. Use only credentials configured or explicitly designated by the user through an authorized secure mechanism. Do not scan repositories, `.env*` files, user directories, or credential stores, and do not send invalid keys as a test. If running unattended and configuration cannot be obtained, record the missing setting names without values and end the run.
 4. Once configuration is complete, reuse it to check the balance and make calls. On a 401 from an API-key-authenticated request, pause and ask the user to check that key. For an email-session 401, use the explicit refresh and recovery steps below. Keep the original authentication method and service URL.
 
 ### Missing Configuration: Required User Guidance
@@ -51,7 +51,7 @@ If the user does not have an API key yet, explain that setup saves an existing k
 
 When explaining check results, report only what was actually checked. Ordinary API calls do not require a wallet, email address, service URL, or agent ID.
 
-**Browsing the public catalog only:** If the user explicitly wants only to browse the catalog without making paid calls, use `discover/collections/inspect --public` or `models prices/playgrounds/parameters --public` without an API key. Tasks that require API calls must still complete credential configuration first.
+**Browsing the public catalog only:** If the user explicitly wants only to browse the catalog without making paid calls, use `discover/collections/inspect --public` or `models prices/playgrounds/parameters/examples --public` without an API key. `models run --dry-run` also needs no key: it only reads the public catalog and previews a request; it never checks balance or executes a model. Complete credential configuration before actual execution; public discovery and dry-run may happen first.
 
 ## Installation and Configuration Scenarios
 
@@ -63,7 +63,7 @@ openany --version
 openany --help
 ```
 
-If credentials are known to be missing, ask for configuration first. If the CLI is also missing, explain the installation requirement at the same time. Do not require a specific numeric CLI version. Use `openany --version` to report the installed version and `openany --help` to check available commands. If an installed CLI lacks a documented command or option, update it with the command above and check again before proceeding; do not assume that installation alone verifies API access. Make all API calls through the CLI so that configuration checks and call validation apply.
+If credentials are known to be missing, ask for configuration before actual execution; public browsing and dry-run may happen first. If the CLI is also missing, explain the installation requirement at the same time. Do not require a specific numeric CLI version. Use `openany --version` to report the installed version and `openany --help` to check available commands. If an installed CLI lacks a documented command or option, update it with the command above and check again before proceeding; do not assume that installation alone verifies API access. Make all API calls through the CLI so that configuration checks and call validation apply.
 
 Choose the configuration scenario for the task, reuse existing settings, and supply only missing items:
 
@@ -130,9 +130,30 @@ openany calls list --limit 20 -j
 openany calls get --id REQUEST_ID -j
 ```
 
-`calls list/get` queries data and tool API records for the current API key, not records from `models run`. An empty result or missing record does not prove a request was not executed or charged; keep uncertain requests pending rather than automatically repeating them.
+`calls list/get` queries persisted model and data/tool API usage for the current API key when the backend includes unified usage-call support. Older backends exclude model calls; updating the CLI alone does not change that. An empty result or missing record does not prove a request was not executed or charged; keep uncertain requests pending rather than automatically repeating them.
 
-Record filters include `--api-id`, `--status`, `--from/--to` (UTC ISO format with milliseconds), `--review-required true|false`, and `--cursor`. Replace `REQUEST_ID` with the actual `requestId` returned by the call.
+Record filters include `--api-id`, `--status success|failed`, `--from/--to` (UTC ISO format with milliseconds), and `--cursor`. `--review-required` is unsupported because usage logs have no review state; the CLI rejects it before making a request. Do not guess status aliases such as `settled`, `succeeded`, `ok`, or `pending`.
+
+Replace `REQUEST_ID` with the real request ID. Model trace IDs are supported; canonical UUIDs match their 32-hex form as well, while other opaque IDs match exactly. `usageType` distinguishes `model` from `api`; model rows have `apiId: null`, a model name and the recorded provider. `chargedCostMicroUsd` is the persisted per-row charge in micro-USD; monthly usage is an aggregate, not proof of any individual charge. Unknown review or settlement metadata stays unknown. Lists default to seven days, with a maximum 31-day explicit range; detail queries are independent of that window. Old API-only cursors become invalid after the backend update; restart listing without a cursor. Never bypass key scope or automatically retry a possibly charged model request because its log is missing.
+
+## Calling Models from Curl Examples
+
+1. Run `openany models examples --model MODEL --public -j`. Read the request templates, provider names, example IDs, path parameters and per-example errors.
+2. Choose `--provider PROVIDER` if the model has multiple providers. Choose `--example EXAMPLE_ID` if the chosen provider has multiple requests; never execute all examples as a batch. Copy IDs from the current listing; refresh after a sample changes.
+3. Save the selected `request.json` template as `input.json` and supply the complete desired body, including `model` (unless the URL explicitly binds `{model}`). Do not assume example prompts/defaults are merged. JSON requests and image-edit multipart requests bind `route.provider` to the chosen catalog record, replacing `<provider-for-this-model>` or inserting the routing field. A conflicting concrete model/provider is an error.
+4. Preview, then execute only within the user's authorized scope:
+
+```bash
+openany models run --model MODEL --provider PROVIDER --example CREATE_EXAMPLE_ID -f input.json --dry-run
+openany models run --model MODEL --provider PROVIDER --example CREATE_EXAMPLE_ID -f input.json
+openany models run --model MODEL --provider PROVIDER --example QUERY_EXAMPLE_ID --path '{"task_id":"ACTUAL_TASK_ID"}'
+```
+
+Dry-run needs no key and sends no model or balance request. Execution needs an API key. POST checks balance; GET task queries do not. Use the returned service response to obtain the task ID; the CLI does not infer response fields or automatically poll, retry, or download generated videos. Query templates must declare `{task_id}`; `YOUR_TASK_ID` is rejected until the catalog example is corrected.
+
+Multipart image edits (`/v1/images/edit` or `/v1/images/edits`) use explicit `--attach FIELD=FILE`; repeat the flag for multiple files. Never read example file paths. Supply scalar fields in the input JSON; arrays become repeated fields, and `route` is a JSON object. Audio transcription is unsupported and must not be attempted.
+
+`operations` and `parameters` are not execution prerequisites. `models parameters` remains informational; do not use `--protocol` or `--mode` with `models run`. `--endpoint` only checks the chosen example path. Invalid JSON, dangling continuations, unknown options, unresolved placeholders and conflicting model/provider values fail explicitly; do not repair or bypass them. Request URLs come from the actual examples; redirects are not followed even when an example includes `--location`. Preserve service errors and request IDs; uncertain POST outcomes must not be retried automatically.
 
 ## Wallet Login and API Key Management
 

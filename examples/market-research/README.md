@@ -35,4 +35,4 @@ The recorded API cost was **$0.011** for one request. Future results and prices 
 - [Result excerpt with all 53 graph periods](response.sample.json)
 - [Sanitized usage record](receipt.sample.json)
 
-The usage record retains `chargeStatus: "unknown"` alongside the recorded cost; it is not a payment settlement receipt. Account and API-key identifiers are omitted.
+This usage record shows the recorded API cost; it is not a payment settlement receipt. Account and API-key identifiers are omitted.

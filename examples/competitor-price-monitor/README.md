@@ -44,4 +44,4 @@ Each result excerpt preserves the first six listings, including product IDs and 
 - Sony: [request](sony-request.json), [result excerpt](sony-response.sample.json), [sanitized usage record](sony-receipt.sample.json)
 - Bose: [request](bose-request.json), [result excerpt](bose-response.sample.json), [sanitized usage record](bose-receipt.sample.json)
 
-Both usage records retain `chargeStatus: "unknown"` alongside their recorded costs; they are not payment settlement receipts. Account and API-key identifiers are omitted.
+These usage records show recorded API costs; they are not payment settlement receipts. Account and API-key identifiers are omitted.

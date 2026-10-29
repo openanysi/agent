@@ -32,4 +32,4 @@ The recorded API cost was **$0.00** for one request containing all three coin ID
 - [Actual price response](response.sample.json)
 - [Sanitized usage record](receipt.sample.json)
 
-The usage record retains `chargeStatus: "unknown"` and a recorded cost of zero; it is not a payment settlement receipt. Account and API-key identifiers are omitted.
+This usage record shows the recorded API cost; it is not a payment settlement receipt. Account and API-key identifiers are omitted.

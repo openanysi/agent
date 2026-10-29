@@ -34,4 +34,4 @@ The recorded cost was **$0.00188** on October 28, 2026. This is a historical exa
 
 For reference, the original session's [query parameters](query.json), [three-ad result excerpt](response.sample.json), and [sanitized usage record](receipt.sample.json) are included. You do not need these files to use the prompt above.
 
-The usage record retains the original `chargeStatus: "unknown"` alongside its recorded cost; it is not a payment settlement receipt. Account and API-key identifiers are omitted. These files document the original call, not a new execution of the prompt above.
+This usage record shows the recorded API cost; it is not a payment settlement receipt. Account and API-key identifiers are omitted. These files document the original call, not a new execution of the prompt above.

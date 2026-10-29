@@ -3,6 +3,5 @@
   "requestId": "c0b9e2ae-9ae1-4b62-a083-8167a3c9e798",
   "startedAt": "2026-10-28T15:41:05.230Z",
   "status": "success",
-  "chargedCostMicroUsd": "1880",
-  "chargeStatus": "unknown"
+  "chargedCostMicroUsd": "1880"
 }

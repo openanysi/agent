@@ -2,7 +2,7 @@
 
 OpenAny CLI discovers and calls model, data, and tool APIs, and manages accounts, API keys, and top-ups. Use this document as a quick start and [SKILL.md](https://openany.si/SKILL.md) for complete command, authorization, and recovery instructions.
 
-Use the latest published CLI with Node.js **>=22**. The service and signing domain is **https://openany.si**; the API gateway is **https://api.openany.si**. These addresses are built into the CLI and cannot be overridden at runtime.
+Use the latest published CLI with Node.js **>=22**. The backend and signing service use **https://openany.si**; the default API gateway is **https://api.openany.si**. Model execution uses the actual HTTPS URL in the selected catalog `curlExample`, including legacy or development domains. Do not rewrite that URL or execute the curl text in a shell. There is no command-line origin override.
 
 ## Entry points
 
@@ -38,13 +38,13 @@ openany --version
 openany --help
 ```
 
-Ordinary model, data, and tool calls require only `OPENANY_API_KEY` or the current key saved in the CLI. They do not require wallet login, email login, or an agent ID. If credentials are known to be missing, ask for secure configuration first and explain the installation requirement at the same time if needed.
+Ordinary model, data, and tool calls require only `OPENANY_API_KEY` or the current key saved in the CLI. They do not require wallet login, email login, or an agent ID. If credentials are known to be missing, ask for secure configuration before actual execution and explain the installation requirement at the same time if needed. Public catalog browsing and `models run --dry-run` may precede configuration.
 
 If configuration status is unknown, run `openany status --scenario call -j`. Check `configured` and `missing`; exit code 0 only means the local check completed. Use credentials supplied or explicitly designated by the user. Never scan repositories, `.env*` files, user directories, or credential stores, or ask for keys in chat. Environment variable `OPENANY_API_KEY` takes precedence over the current local key. See AUTH.md to save an existing key or manage keys with wallet/email login.
 
-If a required key is missing, pause catalog queries and API calls until configured. If running unattended, report the missing items and end the run. On an API-key 401, pause and ask the user to check that key. For email-session errors, follow AUTH.md's explicit refresh and recovery instructions. Do not switch authentication methods or service domains.
+If a required key is missing, pause execution requests until configured; explicit public catalog browsing and `models run --dry-run` may proceed without a key. If running unattended and execution requires missing configuration, report the missing items and end the run. On an API-key 401, pause and ask the user to check that key. For email-session errors, follow AUTH.md's explicit refresh and recovery instructions. Do not switch authentication methods or service domains.
 
-For an explicit public-catalog-only task, use `discover/collections/inspect --public` or `models prices/playgrounds/parameters --public` without a key. Tasks requiring API calls must complete credential configuration first.
+For explicit public catalog browsing, use `discover/collections/inspect --public` or `models prices/playgrounds/parameters/examples --public` without a key. `models run --dry-run` also needs no key: it reads the public catalog and previews the request without checking balance or executing a model. Complete credential configuration before actual execution.
 
 ## 2. Discover and call through the CLI
 
@@ -63,9 +63,9 @@ Replace `API_ID` and example parameters with values from the current catalog and
 
 Website capability pages group provider offerings. Select a concrete offering and pass its API ID to `inspect` and `run`; capability keys, capability IDs, and collection IDs cannot replace it. Check each offering's own contract and do not substitute providers without authorization.
 
-For models, use `models list`, `models prices`, `models playgrounds`, and `models parameters` to select a current operation, then `models run` with its model ID, protocol, mode, endpoint, and validated input. Use the examples in SKILL.md, including attachment and output-file requirements for media. Confirm the required operation when several are available; do not hard-code a model or assume Chat Completions fits every operation.
+For models, use `openany models examples --model MODEL --public -j` to read the current request templates, providers, and example IDs. Select `--provider PROVIDER` and `--example EXAMPLE_ID` when multiple choices exist; do not execute all examples as a batch. Supply the complete desired request body with `-f input.json`, including `model` unless the URL binds it. Preview with `models run --model MODEL --provider PROVIDER --example EXAMPLE_ID -f input.json --dry-run`, then remove `--dry-run` to execute within the authorized scope. Do not pass `--protocol` or `--mode` to `models run`; `models parameters` is informational, not an execution prerequisite. Follow SKILL.md for provider routing, attachments, output files, and unsupported media operations.
 
-Calls are synchronous. The CLI has no general asynchronous task polling or stopping commands. Streaming output is returned after the stream finishes; an HTTP 200 or partial stream alone is not success.
+Data and tool calls return synchronously. For model tasks, use a catalog query example with `--path '{"task_id":"ACTUAL_TASK_ID"}'` only when that template declares `{task_id}` and the service returned the task ID. The CLI does not automatically poll, retry, download generated videos, or stop tasks. Streaming output is returned after the stream finishes; an HTTP 200, task creation response, or partial stream alone does not prove generation is complete.
 
 ## 3. Authentication and authorized top-ups
 
@@ -83,7 +83,7 @@ Retain the intent and returned order ID, and keep the scope, amount, and network
 
 ## 4. Recover and report actual results
 
-After a data or tool API call times out or disconnects, inspect `openany calls list --limit 20 -j` and `openany calls get --id REQUEST_ID -j` using the same API key. These commands do not query `models run` history. For model calls, retain the request ID and check model usage records in the account dashboard or ask support to reconcile the request. Missing records do not prove that a call was not executed or charged; do not automatically repeat an uncertain paid request.
+After a model, data, or tool call times out or disconnects, retain its request ID and inspect `openany calls list --limit 20 -j` and `openany calls get --id REQUEST_ID -j` using the same API key. Backends with unified usage-call support include model and data/tool records; older backends exclude model records, and updating the CLI alone does not change that. For model records unavailable through these commands, check the account dashboard or ask support to reconcile the request. `usageType` distinguishes `model` from `api`; `chargedCostMicroUsd` is the recorded per-row charge in micro-USD. Use `--status success|failed`; `--review-required` is unsupported. Lists default to seven days with a maximum 31-day explicit range; detail queries are independent of that window. Missing records do not prove that a call was not executed or charged; do not automatically repeat an uncertain paid request.
 
 On failure, inspect the nonzero exit code and JSON error on stderr. Retain the error code and request ID without exposing secrets. Explain configuration, catalog, balance, authentication, and business-call failures separately. If login or key management succeeded remotely but failed to save locally, recover the original result using `openany auth recover --file RETURNED_PATH` with the verified recovery file. Follow SKILL.md for other recovery cases; do not automatically delete configuration locks.
 
